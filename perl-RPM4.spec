@@ -3,8 +3,8 @@
 
 %define module	RPM4
 %define name	perl-%{module}
-%define version	0.21
-%define release %mkrel 6
+%define version	0.22
+%define release %mkrel 1
 
 Name:		%{name}
 Version:	%{version}
@@ -12,9 +12,8 @@ Release:	%{release}
 Summary:	Perl bindings to use rpmlib and manage hdlist files
 License:	GPL
 Group:		Development/Perl
-Source:		%{module}-%{version}.tar.bz2
+Source:		%{module}-%{version}.tar.gz
 # upstream patch
-Patch0:     RPM4-fix-missing-colon.patch
 Url:		http://search.cpan.org/dist/RPM4/
 Buildroot:	%{_tmppath}/%{name}-root
 BuildRequires: perl-devel >= 5.8.0
@@ -37,12 +36,10 @@ It allows to write scripts to:
   - check dependencies.
 
 It include:
-- genrepository, a tools to generate hdlists
 - rpm_produced, give what rpm will be produced by a src.rpm or a specfile.
 
 %prep
 %setup -q -n %{module}-%{version}
-%patch -p0 -b .sign
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
@@ -65,5 +62,3 @@ rm -rf $RPM_BUILD_ROOT
 %_bindir/*
 %{perl_vendorarch}/*
 %{_mandir}/*/*
-
-
