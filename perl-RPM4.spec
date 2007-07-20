@@ -4,7 +4,7 @@
 %define module	RPM4
 %define name	perl-%{module}
 %define version	0.22
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name:		%{name}
 Version:	%{version}
@@ -14,6 +14,7 @@ License:	GPL
 Group:		Development/Perl
 Source:		%{module}-%{version}.tar.gz
 # upstream patch
+Patch0: RPM4.fix-spec-source.patch
 Url:		http://search.cpan.org/dist/RPM4/
 Buildroot:	%{_tmppath}/%{name}-root
 BuildRequires: perl-devel >= 5.8.0
@@ -40,6 +41,7 @@ It include:
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch -p0 -b .specsource
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
