@@ -4,7 +4,9 @@
 %define module	RPM4
 %define name	perl-%{module}
 %define version	0.23
-%define release %mkrel 1
+%define release %mkrel 3
+
+%define rpm_version %(rpm -q --queryformat '%|EPOCH?{[%{EPOCH}:%{VERSION}]}:{%{VERSION}}|' rpm)
 
 Name:		%{name}
 Version:	%{version}
@@ -13,7 +15,7 @@ Summary:	Perl bindings to use rpmlib and manage hdlist files
 License:	GPL
 Group:		Development/Perl
 Source:		%{module}-%{version}.tar.gz
-# upstream patch
+Patch0:		RPM4-0.23-fix-build-with-rpm4422.patch
 Url:		http://search.cpan.org/dist/RPM4/
 BuildRequires: perl-devel >= 5.8.0
 BuildRequires: rpm-devel
@@ -23,6 +25,9 @@ BuildRequires: packdrake
 BuildRequires: perl-MDV-Packdrakeng
 BuildRequires: gnupg
 Requires:	perl
+# requires rpm used for build because librpm API is not that stable
+# (but not requiring same release, hopefully we won't break it patching rpm)
+Requires:	rpm = %{rpm_version}
 
 %description
 This module provides a perl interface to the rpmlib.
@@ -39,13 +44,14 @@ It include:
 
 %prep
 %setup -q -n %{module}-%{version}
+%patch0 -p1
 
 %build
 %{__perl} Makefile.PL INSTALLDIRS=vendor
 %make
 
 %check
-TMPDIR=/tmp %make test
+PERL5DIR=`pwd`/src/blib/arch TMPDIR=/tmp %make test
 
 %clean
 rm -rf $RPM_BUILD_ROOT
