@@ -17,6 +17,7 @@ Group:		Development/Perl
 Source:		%{module}-%{version}.tar.gz
 Patch0:		RPM4-0.23-fix-build-with-rpm4422.patch
 Url:		http://search.cpan.org/dist/RPM4/
+Buildroot:	%{_tmppath}/%{name}-root
 BuildRequires: perl-devel >= 5.8.0
 BuildRequires: rpm-devel
 BuildRequires: perl-Digest-SHA1
