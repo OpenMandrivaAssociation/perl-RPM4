@@ -4,7 +4,7 @@
 %define module	RPM4
 %define name	perl-%{module}
 %define version	0.23
-%define release %mkrel 3
+%define release %mkrel 4
 
 %define rpm_version %(rpm -q --queryformat '%|EPOCH?{[%{EPOCH}:%{VERSION}]}:{%{VERSION}}|' rpm)
 
