@@ -26,9 +26,8 @@ BuildRequires: packdrake
 BuildRequires: perl-MDV-Packdrakeng
 BuildRequires: gnupg
 Requires:	perl
-# requires rpm used for build because librpm API is not that stable
-# (but not requiring same release, hopefully we won't break it patching rpm)
-Requires:	rpm = %{rpm_version}
+# we can now expect librpm API to be at least backward compatible
+Requires:	rpm >= %{rpm_version}
 
 %description
 This module provides a perl interface to the rpmlib.
