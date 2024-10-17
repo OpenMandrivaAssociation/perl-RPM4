@@ -16,7 +16,7 @@ License:	GPL
 Group:		Development/Perl
 Source:		%{module}-%{version}.tar.gz
 Patch0:		RPM4-fix-build-with-rpm46.patch
-Url:		http://search.cpan.org/dist/RPM4/
+Url:		https://search.cpan.org/dist/RPM4/
 Buildroot:	%{_tmppath}/%{name}-root
 BuildRequires: perl-devel >= 5.8.0
 BuildRequires: rpm-devel
