@@ -18,6 +18,7 @@ Source:		%{module}-%{version}.tar.gz
 Patch0:		RPM4-fix-build-with-rpm46.patch
 Url:		https://search.cpan.org/dist/RPM4/
 Buildroot:	%{_tmppath}/%{name}-root
+BuildRequires:	make
 BuildRequires: perl-devel >= 5.8.0
 BuildRequires: rpm-devel
 BuildRequires: perl-Digest-SHA1
